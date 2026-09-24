@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>VLSI Materials | PD, DV, DFT, STA, Analog & Protocols</title>
+<meta name="description" content="VLSI materials from top institutes: Physical Design, Design Verification, DFT, STA, Analog Layout, Protocols. Enquire on WhatsApp.">
+<meta name="theme-color" content="#101a33">
+<meta property="og:title" content="VLSI Materials">
+<meta property="og:description" content="Institutes & resources across PD, DV, DFT, STA, Analog & Protocols. Enquire on WhatsApp.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect x='18' y='18' width='64' height='64' rx='10' fill='%23101a33'/><rect x='32' y='32' width='36' height='36' rx='4' fill='%2300c2ff'/></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@600;800&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#eef1f6;
+    --surface:#ffffff;
+    --ink:#101a33;
+    --muted:#5b6682;
+    --line:#d7dce8;
+    --accent:#1d5cff;
+    --accent-soft:#e6edff;
+    --wa:#1fae5b;
+    --wa-dark:#168a47;
+    --radius-lg:18px;
+    --radius-sm:10px;
+    box-sizing:border-box;
+    padding-top:env(safe-area-inset-top,0px);
+    padding-bottom:env(safe-area-inset-bottom,0px);
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --bg:#0a1022; --surface:#121a33; --ink:#e9edf7; --muted:#9aa5c3;
+      --line:#26304d; --accent:#6b93ff; --accent-soft:#1a2550;
+    }
+  }
+  *,*::before,*::after{box-sizing:inherit}
+  html{scroll-padding-top:env(safe-area-inset-top,0px)}
+  body{
+    margin:0; background:var(--bg); color:var(--ink);
+    font-family:"Manrope",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+    font-size:16px; line-height:1.55;
+    background-image:
+      linear-gradient(var(--line) 1px, transparent 1px),
+      linear-gradient(90deg, var(--line) 1px, transparent 1px);
+    background-size:40px 40px;
+    background-position:-1px -1px;
+    min-height:100vh;
+  }
+  body::before{ /* fade the grid so it stays sober */
+    content:""; position:fixed; inset:0; pointer-events:none;
+    background:radial-gradient(ellipse at top, transparent 0%, var(--bg) 70%);
+  }
+  main{position:relative; max-width:620px; margin:0 auto; padding:28px 18px 120px}
+
+  /* ---------- LOGO (the one bold element) ---------- */
+  .brand{display:flex; flex-direction:column; align-items:center; text-align:center; margin:4px 0 26px}
+  .logo-wrap{position:relative; width:240px; height:240px; display:grid; place-items:center}
+  .halo{
+    position:absolute; inset:28px; border-radius:50%;
+    background:conic-gradient(from 0deg,#00c2ff,#7a5cff,#ff3d9a,#ffb000,#00d68f,#00c2ff);
+    filter:blur(34px); opacity:.45; animation:spin 10s linear infinite;
+  }
+  .chip{position:relative; width:240px; height:240px; display:block; overflow:visible}
+  .chip .trace{fill:none; stroke:var(--line); stroke-width:2.2; stroke-linecap:round; stroke-linejoin:round}
+  .chip .spark{fill:none; stroke:url(#grad); stroke-width:3; stroke-linecap:round; stroke-dasharray:10 90; animation:flow 2.6s linear infinite}
+  .chip .via{fill:var(--surface); stroke:url(#grad); stroke-width:2}
+  .chip .pin{fill:#c4ccdd}
+  .chip .ring{fill:none; stroke:url(#grad); stroke-width:2; stroke-dasharray:3 9; stroke-linecap:round; animation:spin 30s linear infinite; transform-origin:120px 120px}
+  .chip .ring2{fill:none; stroke:url(#grad); stroke-width:1.2; opacity:.5; stroke-dasharray:60 20 4 20; animation:spin 18s linear infinite reverse; transform-origin:120px 120px}
+  .chip .core{animation:breathe 2.8s ease-in-out infinite; transform-origin:120px 120px}
+  .chip .shine{animation:sweep 4s ease-in-out infinite}
+  @keyframes flow{from{stroke-dashoffset:100}to{stroke-dashoffset:0}}
+  @keyframes spin{to{transform:rotate(360deg)}}
+  @keyframes breathe{0%,100%{opacity:.85; transform:scale(1)}50%{opacity:1; transform:scale(1.06)}}
+  @keyframes sweep{0%{transform:translateX(-80px)}60%,100%{transform:translateX(80px)}}
+
+  .wordmark{
+    font-family:"Unbounded","Arial Black",sans-serif; font-weight:800;
+    font-size:clamp(48px,13vw,76px); letter-spacing:.04em; line-height:1.1; margin:6px 0 2px;
+  }
+  .wordmark span{
+    display:inline-block;
+    background:linear-gradient(90deg,#00c2ff,#7a5cff,#ff3d9a,#ffb000,#00d68f,#00c2ff);
+    background-size:400% 100%;
+    -webkit-background-clip:text; background-clip:text; color:transparent; -webkit-text-fill-color:transparent;
+    animation:shift 6s ease-in-out infinite, bob 2.4s ease-in-out infinite;
+  }
+  .wordmark span:nth-child(2){animation-delay:-.6s,.15s}
+  .wordmark span:nth-child(3){animation-delay:-1.2s,.3s}
+  .wordmark span:nth-child(4){animation-delay:-1.8s,.45s}
+  @keyframes shift{0%,100%{background-position:0% 50%}50%{background-position:100% 50%}}
+  @keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-5px)}}
+  .tagline{font-size:.95rem; font-weight:700; letter-spacing:.35em; margin:6px 0 6px; padding-left:.35em; color:var(--muted)}
+  .sub{color:var(--muted); margin:0; font-size:.95rem}
+
+  .contact{
+    display:inline-flex; align-items:center; gap:10px; margin-top:16px;
+    background:var(--surface); border:1px solid var(--line); border-radius:999px;
+    padding:8px 16px 8px 8px; color:var(--ink); text-decoration:none; font-weight:600;
+  }
+  .contact .dot{width:30px;height:30px;border-radius:50%;background:var(--wa);display:grid;place-items:center}
+  .contact small{display:block; color:var(--muted); font-weight:500; font-size:.78rem; line-height:1.1}
+  .contact:hover{border-color:var(--wa)}
+
+  /* ---------- Wizard ---------- */
+  .card{background:var(--surface); border:1px solid var(--line); border-radius:var(--radius-lg); padding:22px}
+  .progress{display:flex; gap:6px; margin-bottom:18px}
+  .progress i{flex:1; height:5px; border-radius:3px; background:var(--line); transition:background .3s}
+  .progress i.on{background:var(--accent)}
+  .step-no{color:var(--muted); font-size:.85rem; font-weight:600; margin:0}
+  h2{font-size:1.3rem; margin:2px 0 4px; line-height:1.3}
+  .hint{color:var(--muted); margin:0 0 16px; font-size:.93rem}
+
+  .main-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:10px; margin-bottom:10px}
+  .more-grid{display:grid; grid-template-columns:repeat(2,1fr); gap:8px}
+  @media (max-width:460px){ .main-grid{grid-template-columns:1fr} .more-grid{grid-template-columns:1fr} }
+
+  .opt{
+    font:inherit; color:var(--ink); text-align:left; cursor:pointer;
+    background:var(--bg); border:1.5px solid var(--line); border-radius:var(--radius-sm);
+    padding:12px 14px; transition:border-color .15s, background .15s;
+    display:flex; align-items:center; justify-content:space-between; gap:8px;
+  }
+  .opt:hover{border-color:var(--accent)}
+  .opt.big{flex-direction:column; align-items:flex-start; padding:16px}
+  .opt.big b{font-family:"Unbounded",sans-serif; font-size:1.5rem; font-weight:600; line-height:1}
+  .opt.big span{color:var(--muted); font-size:.85rem}
+  .opt .count{color:var(--muted); font-size:.8rem; white-space:nowrap}
+  .opt.selected{border-color:var(--accent); background:var(--accent-soft)}
+  .opt .tick{width:20px;height:20px;border-radius:6px;border:1.5px solid var(--line);flex:none;display:grid;place-items:center}
+  .opt.selected .tick{background:var(--accent);border-color:var(--accent)}
+  .opt.selected .tick::after{content:"";width:9px;height:5px;border-left:2px solid #fff;border-bottom:2px solid #fff;transform:rotate(-45deg) translate(1px,-1px)}
+  .more-label{color:var(--muted); font-size:.88rem; margin:16px 0 8px}
+
+  .list{display:grid; gap:8px}
+  .list .opt{justify-content:flex-start}
+
+  .yn{display:grid; grid-template-columns:1fr 1fr; gap:10px}
+  .yn .opt{justify-content:center; font-weight:700; padding:14px}
+  textarea{
+    width:100%; min-height:120px; resize:vertical; margin-top:14px;
+    font:inherit; color:var(--ink); background:var(--bg);
+    border:1.5px solid var(--line); border-radius:var(--radius-sm); padding:12px;
+  }
+  textarea:focus{outline:none; border-color:var(--accent)}
+  .reveal{animation:open .25s ease-out}
+  @keyframes open{from{opacity:0; transform:translateY(-6px)}to{opacity:1; transform:none}}
+
+  .cart{margin-top:16px; padding:12px 14px; border:1px dashed var(--line); border-radius:var(--radius-sm); font-size:.9rem}
+  .cart b{display:block; margin-bottom:4px}
+  .cart ul{margin:0; padding-left:18px}
+
+  .actions{display:flex; gap:10px; margin-top:20px; flex-wrap:wrap}
+  .btn{
+    font:inherit; font-weight:700; cursor:pointer; border-radius:var(--radius-sm);
+    padding:12px 18px; border:1.5px solid var(--line); background:transparent; color:var(--ink);
+  }
+  .btn.primary{background:var(--accent); border-color:var(--accent); color:#fff; margin-left:auto}
+  .btn:disabled{opacity:.4; cursor:not-allowed}
+  .btn.link{border:none; padding:12px 4px; color:var(--accent)}
+
+  .summary{font-family:inherit; background:var(--bg); border-radius:var(--radius-sm); padding:14px; font-size:.93rem; white-space:pre-wrap; word-break:break-word; margin:0}
+
+  .wa-btn{
+    display:flex; align-items:center; justify-content:center; gap:10px; width:100%;
+    margin-top:16px; padding:15px; border:none; border-radius:var(--radius-sm); cursor:pointer;
+    background:var(--wa); color:#fff; font:inherit; font-weight:800; font-size:1.05rem; text-decoration:none;
+  }
+  .wa-btn:hover{background:var(--wa-dark)}
+
+  /* popup */
+  .overlay{position:fixed; inset:0; background:rgba(8,12,28,.55); display:none; align-items:flex-end; justify-content:center; z-index:50; padding:16px}
+  .overlay.show{display:flex}
+  @media (min-width:600px){ .overlay{align-items:center} }
+  .modal{background:var(--surface); color:var(--ink); border-radius:var(--radius-lg); width:100%; max-width:440px; padding:22px; animation:pop .25s ease-out; max-height:90vh; overflow:auto}
+  @keyframes pop{from{opacity:0; transform:translateY(20px) scale(.97)}to{opacity:1; transform:none}}
+  .modal h3{margin:0 0 6px; font-size:1.2rem}
+
+  .float-wa{
+    position:fixed; right:18px; bottom:calc(18px + env(safe-area-inset-bottom,0px));
+    width:56px; height:56px; border-radius:50%; background:var(--wa);
+    display:grid; place-items:center; box-shadow:0 6px 18px rgba(31,174,91,.4); z-index:40;
+  }
+  footer{text-align:center; color:var(--muted); font-size:.85rem; margin-top:28px}
+  footer a{color:inherit}
+
+  :focus-visible{outline:3px solid var(--accent); outline-offset:2px}
+  @media (prefers-reduced-motion: reduce){
+    *{animation:none !important; transition:none !important}
+  }
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="wa-ic" viewBox="0 0 32 32">
+    <path d="M16 4.2C9.4 4.2 4.1 9.4 4.1 15.9c0 2.3.7 4.5 1.9 6.4L4.4 27.8l5.7-1.5c1.8 1 3.8 1.5 5.9 1.5 6.6 0 11.9-5.3 11.9-11.8S22.6 4.2 16 4.2Z" fill="none" stroke="#fff" stroke-width="2.2" stroke-linejoin="round"/>
+    <path d="M11.6 10.3c.4-.4 1-.4 1.3.1l1.5 2.3c.3.4.2 1-.2 1.3l-.8.7c.7 1.6 2 2.9 3.6 3.6l.7-.8c.3-.4.9-.5 1.3-.2l2.3 1.5c.5.3.5.9.1 1.3l-1 1c-.7.7-1.7.9-2.6.6-3.4-1.1-6.1-3.8-7.2-7.2-.3-.9-.1-1.9.6-2.6l.4-.6Z" fill="#fff"/>
+  </symbol>
+</svg>
+<main>
+
+  <!-- ===== BRAND ===== -->
+  <header class="brand">
+    <div class="logo-wrap" aria-hidden="true">
+      <div class="halo"></div>
+      <svg class="chip" viewBox="0 0 240 240">
+        <defs>
+          <linearGradient id="grad" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0" stop-color="#00c2ff"/><stop offset=".35" stop-color="#7a5cff"/>
+            <stop offset=".7" stop-color="#ff3d9a"/><stop offset="1" stop-color="#ffb000"/>
+          </linearGradient>
+          <linearGradient id="body" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stop-color="#1c2a52"/><stop offset="1" stop-color="#0a1128"/>
+          </linearGradient>
+          <radialGradient id="coreG" cx=".5" cy=".5" r=".6">
+            <stop offset="0" stop-color="#ffffff"/><stop offset=".25" stop-color="#7ee3ff"/>
+            <stop offset=".6" stop-color="#7a5cff"/><stop offset="1" stop-color="#ff3d9a"/>
+          </radialGradient>
+          <pattern id="die" width="8" height="8" patternUnits="userSpaceOnUse">
+            <path d="M8 0H0V8" fill="none" stroke="rgba(126,227,255,.18)" stroke-width="1"/>
+          </pattern>
+          <clipPath id="coreClip"><rect x="95" y="95" width="50" height="50" rx="6"/></clipPath>
+        </defs>
+        <circle class="ring" cx="120" cy="120" r="114"/>
+        <circle class="ring2" cx="120" cy="120" r="104"/>
+        <g id="traces"></g>
+        <rect x="70" y="70" width="100" height="100" rx="14" fill="url(#body)" stroke="url(#grad)" stroke-width="2.5"/>
+        <rect x="82" y="82" width="76" height="76" rx="8" fill="url(#die)" stroke="rgba(126,227,255,.35)" stroke-width="1"/>
+        <circle cx="81" cy="81" r="3" fill="#7ee3ff"/>
+        <g class="core">
+          <rect x="95" y="95" width="50" height="50" rx="6" fill="url(#coreG)"/>
+          <g clip-path="url(#coreClip)"><rect class="shine" x="100" y="80" width="14" height="80" fill="rgba(255,255,255,.55)" transform="rotate(20 120 120)"/></g>
+        </g>
+        <path d="M104 120h8l4-8 8 16 4-8h8" fill="none" stroke="#0a1128" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </div>
+    <h1 class="wordmark" aria-label="VLSI"><span>V</span><span>L</span><span>S</span><span>I</span></h1>
+    <p class="tagline">Materials</p>
+    <p class="sub">Institutes & resources across PD, DV, DFT, STA, Analog & Protocols</p>
+    <a class="contact" href="https://wa.me/919106141806" target="_blank" rel="noopener">
+      <span class="dot"><svg width="16" height="16" aria-hidden="true"><use href="#wa-ic"/></svg></span>
+      <span>+91 91061 41806<small>tankoliyab@gmail.com</small></span>
+    </a>
+  </header>
+
+  <!-- ===== WIZARD ===== -->
+  <section class="card" aria-live="polite">
+    <div class="progress" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+    <div id="view"></div>
+  </section>
+
+  <footer>
+    Questions? Email <a href="mailto:tankoliyab@gmail.com">tankoliyab@gmail.com</a>
+    or WhatsApp <a href="https://wa.me/919106141806" target="_blank" rel="noopener">+91 91061 41806</a>
+  </footer>
+</main>
+
+<!-- ===== POPUP ===== -->
+<div class="overlay" id="overlay" role="dialog" aria-modal="true" aria-labelledby="mTitle">
+  <div class="modal">
+    <h3 id="mTitle">Send your request on WhatsApp</h3>
+    <p class="hint">This message will be filled in for you. You can still edit it inside WhatsApp before sending.</p>
+    <pre class="summary" id="msgPreview"></pre>
+    <a class="wa-btn" id="waLink" href="#" target="_blank" rel="noopener">
+      <svg width="22" height="22" aria-hidden="true"><use href="#wa-ic"/></svg>
+      Open WhatsApp
+    </a>
+    <div class="actions"><button class="btn" id="closeModal">Go back and edit</button></div>
+  </div>
+</div>
+
+<a class="float-wa" href="https://wa.me/919106141806" target="_blank" rel="noopener" aria-label="Chat on WhatsApp">
+  <svg width="28" height="28" aria-hidden="true"><use href="#wa-ic"/></svg>
+</a>
+
+<script>
+/* =========================================================
+   EDIT YOUR DATA HERE  (add / remove institutes easily)
+   ========================================================= */
+const WHATSAPP_NUMBER = "919106141806";
+
+const MAIN = [
+  { id:"DV",  short:"DV",  name:"Design Verification (DV)", institutes:["Maven Silicon","VLSI GURU"] },
+  { id:"DFT", short:"DFT", name:"Design for Test (DFT)",    institutes:["Maven Silicon","VLSI GURU","Siemens Video","Other"] },
+  { id:"PD",  short:"PD",  name:"Physical Design (PD)",     institutes:["Maven Silicon","Excel VLSI Technologies","Takshila Institute","RV-Skills","Other"] },
+];
+const MORE = [
+  { id:"STA",   name:"STA Material",                     institutes:["Maven Silicon"] },
+  { id:"AL",    name:"Analog Layout",                    institutes:["Takshila Institute"] },
+  { id:"AC",    name:"Analog Circuit",                   institutes:["Takshila Institute"] },
+  { id:"PROTO", name:"PCIe, DDR, Ethernet Protocol",     institutes:["VLSI GURU"] },
+  { id:"QUESTA",name:"Siemens Questa Verification",      institutes:["Siemens"] },
+  { id:"TCL",   name:"Synopsys TCL",                     institutes:["Synopsys"] },
+  { id:"FM",    name:"Formality",                        institutes:["Synopsys"] },
+];
+const ALL = [...MAIN, ...MORE];
+
+/* ===================== STATE ===================== */
+const state = {
+  step: 1,
+  domain: null,          // current domain id
+  picks: {},             // { domainId: Set(institutes) }
+  hasMaterial: null,       // "yes" | "no"
+  owned: ""
+};
+
+const view = document.getElementById("view");
+const bars = document.querySelectorAll(".progress i");
+const esc = s => s.replace(/[&<>"']/g, c => ({ "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;" }[c]));
+const byId = id => ALL.find(d => d.id === id);
+const totalPicks = () => Object.values(state.picks).reduce((n,s)=>n+s.size,0);
+
+function cartHTML(){
+  const rows = Object.entries(state.picks).filter(([,s])=>s.size)
+    .map(([id,s]) => `<li><b style="display:inline">${esc(byId(id).name)}:</b> ${[...s].map(esc).join(", ")}</li>`);
+  return rows.length ? `<div class="cart"><b>Your selection</b><ul>${rows.join("")}</ul></div>` : "";
+}
+
+function render(){
+  bars.forEach((b,i)=>b.classList.toggle("on", i < state.step));
+  if (state.step === 1) stepDomain();
+  if (state.step === 2) stepInstitutes();
+  if (state.step === 3) stepOwned();
+  if (state.step === 4) stepReview();
+}
+
+/* ---------- STEP 1: choose domain ---------- */
+function stepDomain(){
+  const badge = id => state.picks[id]?.size ? `<span class="count">${state.picks[id].size} selected</span>` : "";
+  view.innerHTML = `
+    <p class="step-no">Step 1 of 4</p>
+    <h2>Which area do you want materials for?</h2>
+    <p class="hint">Pick one. You can add more areas in the next step.</p>
+    <div class="main-grid">
+      ${MAIN.map(d=>`<button class="opt big" data-d="${d.id}"><b>${d.short}</b><span>${esc(d.name.replace(/\s*\(.*\)/,""))}</span>${badge(d.id)}</button>`).join("")}
+    </div>
+    <p class="more-label">More topics</p>
+    <div class="more-grid">
+      ${MORE.map(d=>`<button class="opt" data-d="${d.id}"><span>${esc(d.name)}</span>${badge(d.id)}</button>`).join("")}
+    </div>
+    ${cartHTML()}
+    ${totalPicks() ? `<div class="actions"><button class="btn primary" id="toStep3">Continue with selection</button></div>` : ""}
+  `;
+  view.querySelectorAll("[data-d]").forEach(b => b.onclick = () => {
+    state.domain = b.dataset.d;
+    state.picks[state.domain] ??= new Set();
+    state.step = 2; render();
+  });
+  const n = document.getElementById("toStep3");
+  if (n) n.onclick = () => { state.step = 3; render(); };
+}
+
+/* ---------- STEP 2: choose institutes ---------- */
+function stepInstitutes(){
+  const d = byId(state.domain);
+  const set = state.picks[d.id];
+  view.innerHTML = `
+    <p class="step-no">Step 2 of 4</p>
+    <h2>${esc(d.name)}</h2>
+    <p class="hint">Select the institute materials you want. You can select more than one.</p>
+    <div class="list">
+      ${d.institutes.map(n=>`<button class="opt ${set.has(n)?"selected":""}" data-i="${esc(n)}" aria-pressed="${set.has(n)}"><span class="tick"></span>${esc(n)}</button>`).join("")}
+    </div>
+    ${cartHTML()}
+    <div class="actions">
+      <button class="btn" id="back">Back</button>
+      <button class="btn link" id="addMore">+ Add another area</button>
+      <button class="btn primary" id="next" ${totalPicks()?"":"disabled"}>Next</button>
+    </div>
+  `;
+  view.querySelectorAll("[data-i]").forEach(b => b.onclick = () => {
+    const n = b.dataset.i;
+    set.has(n) ? set.delete(n) : set.add(n);
+    stepInstitutes();
+  });
+  document.getElementById("back").onclick = () => { state.step = 1; render(); };
+  document.getElementById("addMore").onclick = () => { state.step = 1; render(); };
+  document.getElementById("next").onclick = () => { state.step = 3; render(); };
+}
+
+/* ---------- STEP 3: already have materials? ---------- */
+function stepOwned(){
+  view.innerHTML = `
+    <p class="step-no">Step 3 of 4</p>
+    <h2>Do you already have any VLSI materials?</h2>
+    <p class="hint">This helps avoid sending you something you already own.</p>
+    <div class="yn">
+      <button class="opt ${state.hasMaterial==="yes"?"selected":""}" data-yn="yes">Yes</button>
+      <button class="opt ${state.hasMaterial==="no"?"selected":""}" data-yn="no">No</button>
+    </div>
+    ${state.hasMaterial==="yes" ? `
+      <div class="reveal">
+        <textarea id="owned" placeholder="Write the materials you already have, in English or any language.&#10;Example: Maven Silicon DV, VLSI GURU DFT">${esc(state.owned)}</textarea>
+      </div>` : ""}
+    <div class="actions">
+      <button class="btn" id="back">Back</button>
+      <button class="btn primary" id="next" ${state.hasMaterial?"":"disabled"}>Review request</button>
+    </div>
+  `;
+  view.querySelectorAll("[data-yn]").forEach(b => b.onclick = () => {
+    state.hasMaterial = b.dataset.yn; stepOwned();
+    if (state.hasMaterial === "yes") document.getElementById("owned").focus();
+  });
+  const t = document.getElementById("owned");
+  if (t) t.oninput = e => state.owned = e.target.value;
+  document.getElementById("back").onclick = () => { state.step = 1; render(); };
+  document.getElementById("next").onclick = () => {
+    if (state.hasMaterial === "yes" && !state.owned.trim()){
+      t.style.borderColor = "#e5484d"; t.placeholder = "Please write the materials you already have, or choose No."; t.focus(); return;
+    }
+    state.step = 4; render();
+  };
+}
+
+/* ---------- STEP 4: review + WhatsApp ---------- */
+function buildMessage(){
+  const lines = ["Hello, I found your VLSI Materials page.", "", "*Materials I want:*"];
+  Object.entries(state.picks).filter(([,s])=>s.size).forEach(([id,s])=>{
+    lines.push(`- ${byId(id).name}: ${[...s].join(", ")}`);
+  });
+  lines.push("", "*Materials I already have:*");
+  lines.push(state.hasMaterial === "yes" && state.owned.trim() ? state.owned.trim() : "None");
+  lines.push("", "Please share the details and price.");
+  return lines.join("\n");
+}
+
+function stepReview(){
+  const msg = buildMessage();
+  view.innerHTML = `
+    <p class="step-no">Step 4 of 4</p>
+    <h2>Check your request</h2>
+    <p class="hint">Looks right? Send it on WhatsApp.</p>
+    <pre class="summary">${esc(msg)}</pre>
+    <div class="actions">
+      <button class="btn" id="back">Edit</button>
+      <button class="btn" id="restart">Start over</button>
+    </div>
+    <button class="wa-btn" id="openPopup">Send on WhatsApp</button>
+  `;
+  document.getElementById("back").onclick = () => { state.step = 3; render(); };
+  document.getElementById("restart").onclick = () => {
+    Object.assign(state,{step:1,domain:null,picks:{},hasMaterial:null,owned:""}); render();
+  };
+  document.getElementById("openPopup").onclick = () => openModal(msg);
+}
+
+/* ---------- POPUP ---------- */
+const overlay = document.getElementById("overlay");
+function openModal(msg){
+  document.getElementById("msgPreview").textContent = msg;
+  // encodeURIComponent handles Hindi, Gujarati, emoji and new lines safely
+  document.getElementById("waLink").href = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(msg)}`;
+  overlay.classList.add("show");
+  document.getElementById("waLink").focus();
+}
+const closeModal = () => overlay.classList.remove("show");
+document.getElementById("closeModal").onclick = closeModal;
+overlay.onclick = e => { if (e.target === overlay) closeModal(); };
+document.addEventListener("keydown", e => { if (e.key === "Escape") closeModal(); });
+
+/* ---------- Chip traces (logo) ---------- */
+(function traces(){
+  const g = document.getElementById("traces"); let s = "";
+  const pins = [88,104,120,136,152];
+  const ends = [[60,34],[92,22],[120,14],[148,22],[180,34]];
+  for (let k=0;k<4;k++){
+    let side = `<g transform="rotate(${k*90} 120 120)">`;
+    pins.forEach((x,i)=>{
+      const [ex,ey] = ends[i];
+      const d = `M${x} 70 V52 L${ex} ${ey+6}`;
+      side += `<rect class="pin" x="${x-2.5}" y="62" width="5" height="9" rx="1.5"/>`;
+      side += `<path class="trace" d="${d}"/>`;
+      side += `<path class="spark" pathLength="100" d="${d}" style="animation-delay:${(k*5+i)*0.17}s"/>`;
+      side += `<circle class="via" cx="${ex}" cy="${ey+6}" r="4"/>`;
+    });
+    g.innerHTML += side + "</g>";
+  }
+})();
+
+render();
+</script>
+</body>
+</html>
